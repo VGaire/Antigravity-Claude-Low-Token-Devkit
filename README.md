@@ -1,4 +1,4 @@
-<h1 align="center">🚀 Antigravity Claude LowToken Devkit</h1>
+<h1 align="center">🚀 Antigravity Claude Low Token Devkit</h1>
 
 <p align="center">
   Memory-Driven AI Development System using <b>Claude Code + Antigravity</b> with <b>Ultra-Low Token Usage</b>

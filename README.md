@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="./image.png" alt="Antigravity Claude LowToken Devkit Banner" />
-</p>
-
 <h1 align="center">🚀 Antigravity Claude LowToken Devkit</h1>
 
 <p align="center">

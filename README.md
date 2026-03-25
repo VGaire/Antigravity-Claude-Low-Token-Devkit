@@ -32,7 +32,6 @@ By combining a structured `.memory/` directory with model-specific routing files
 - [Option 2 — Plan-First Workflow (Recommended)](#option-2--plan-first-workflow-recommended)
   - [Step 1 — Planning Prompt](#step-1--planning-prompt)
   - [Step 2 — Infrastructure Request](#step-2--infrastructure-request)
-- [Memory File Reference](#memory-file-reference)
 - [Resuming an Existing Project](#resuming-an-existing-project)
 - [Adding a New Feature](#adding-a-new-feature)
 - [The Closing Ritual](#the-closing-ritual)

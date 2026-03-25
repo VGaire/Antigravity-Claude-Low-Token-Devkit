@@ -814,10 +814,221 @@
     .section:nth-child(4) {
       animation-delay: 0.15s;
     }
+
+    /* ── Mobile Menu Button ── */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 200;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 0.7rem;
+      cursor: pointer;
+      color: var(--accent);
+      font-size: 1.1rem;
+      line-height: 1;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .mobile-menu-btn:hover {
+      background: var(--border);
+      border-color: rgba(91,138,245,0.4);
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+    }
+
+    .sidebar-overlay.active { display: block; }
+
+    /* ── Tablet: ≤1024px ── */
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 280px;
+        z-index: 199;
+        transform: translateX(-100%);
+        transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.4);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      main {
+        padding: 5rem 2.5rem 4rem;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .rule-row {
+        grid-template-columns: 160px 1fr;
+      }
+    }
+
+    /* ── Mobile: ≤640px ── */
+    @media (max-width: 640px) {
+      main {
+        padding: 4.5rem 1.2rem 4rem;
+      }
+
+      .hero h1 {
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 0.95rem;
+        max-width: 100%;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.65rem;
+      }
+
+      .section h2 {
+        font-size: 1.2rem;
+      }
+
+      .section h3 {
+        font-size: 0.95rem;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rule-row {
+        grid-template-columns: 1fr;
+      }
+
+      .rule-label {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.78rem;
+      }
+
+      .resume-step {
+        grid-template-columns: 36px 1fr;
+        gap: 0.75rem;
+      }
+
+      .resume-step-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+      }
+
+      .summary-steps {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .summary-step {
+        width: 100%;
+      }
+
+      .code-block pre {
+        font-size: 0.75rem;
+        padding: 1rem;
+      }
+
+      .code-header {
+        padding: 0.6rem 0.9rem;
+      }
+
+      .file-item {
+        padding: 0.75rem 0.9rem;
+      }
+
+      .step {
+        grid-template-columns: 34px 1fr;
+        gap: 0.75rem;
+      }
+
+      .step-num {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+      }
+
+      .resume-section {
+        padding: 1.2rem;
+      }
+
+      .badge {
+        font-size: 0.6rem;
+        padding: 0.2rem 0.5rem;
+      }
+
+      .section-header {
+        gap: 0.6rem;
+      }
+
+      .callout {
+        font-size: 0.88rem;
+        padding: 1rem 1.1rem;
+      }
+
+      .tip-card {
+        padding: 0.85rem 1rem;
+      }
+
+      .model-card {
+        padding: 1rem 1.1rem;
+      }
+
+      .why-card {
+        padding: 1rem;
+      }
+
+      .hero {
+        margin-bottom: 2.5rem;
+        padding-bottom: 2rem;
+      }
+
+      .section {
+        margin-bottom: 2.5rem;
+      }
+
+      .divider {
+        margin: 2rem 0;
+      }
+    }
   </style>
 </head>
 
 <body>
+
+  <!-- Mobile menu button -->
+  <button class="mobile-menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
   <div class="layout">
 
@@ -826,14 +1037,14 @@
       <div class="sidebar-logo">✦ Dev Guide</div>
 
       <div class="sidebar-label">Setup</div>
-      <a href="#setup" class="active"><span class="dot"></span>Directory Setup</a>
+      <a href="#phase1" class="active"><span class="dot"></span>Directory Setup</a>
 
       <div class="sidebar-label">Bootstrapping</div>
       <a href="#option1"><span class="dot"></span>Option 1 — Autonomous</a>
       <a href="#option2"><span class="dot"></span>Option 2 — Plan-First</a>
 
       <div class="sidebar-label">Rules & Memory</div>
-      <a href="#FileStructure"><span class="dot"></span>Memory File Structure</a>
+      <a href="#phase3"><span class="dot"></span>Memory File Structure</a>
 
       <div class="sidebar-label">Workflow</div>
       <a href="#resume"><span class="dot"></span>Resuming a Project ✦</a>
@@ -853,7 +1064,7 @@
       </div>
 
       <!-- Phase 1 -->
-      <div class="section" id="setup">
+      <div class="section" id="phase1">
         <div class="section-header">
           <span class="badge badge-phase">Setup</span>
           <h2>Initial Directory Setup</h2>
@@ -865,30 +1076,23 @@
         <div class="file-list">
           <div class="file-item">
             <span class="file-icon">md</span>
-            <div><strong>CLAUDE.md</strong><span>The routing map for Claude / Claude Code — auto-loaded on every
-                session. Points to the <code>.memory/</code> directory.</span></div>
+            <div><strong>CLAUDE.md</strong><span>The routing map for Claude / Claude Code — auto-loaded on every session. Points to the <code>.memory/</code> directory.</span></div>
           </div>
           <div class="file-item">
             <span class="file-icon">md</span>
-            <div><strong>GEMINI.md</strong><span>The routing map for Gemini CLI / Antigravity — auto-loaded by Gemini on
-                startup. Same content as CLAUDE.md, both point to the same <code>.memory/</code> folder. Keep both in
-                sync.</span></div>
+            <div><strong>GEMINI.md</strong><span>The routing map for Gemini CLI / Antigravity — auto-loaded by Gemini on startup. Same content as CLAUDE.md, both point to the same <code>.memory/</code> folder. Keep both in sync.</span></div>
           </div>
           <div class="file-item">
             <span class="file-icon">txt</span>
-            <div><strong>.cursorrules / .agentrules</strong><span>Optional rules file for Cursor users or generic agent
-                setups.</span></div>
+            <div><strong>.cursorrules / .agentrules</strong><span>Optional rules file for Cursor users or generic agent setups.</span></div>
           </div>
           <div class="file-item">
             <span class="file-icon">cfg</span>
-            <div><strong>.gitattributes</strong><span>Configured early to exclude memory files from exports and
-                diffs.</span></div>
+            <div><strong>.gitattributes</strong><span>Configured early to exclude memory files from exports and diffs.</span></div>
           </div>
         </div>
         <div class="callout" style="margin-top:0.8rem;">
-          <strong>Multi-model tip:</strong> <code>CLAUDE.md</code> and <code>GEMINI.md</code> are model-specific entry
-          points — but they both route to the same <code>.memory/</code> folder. This means you can switch between
-          Claude Opus for reasoning and Gemini Flash for execution, and both will always share the same Source of Truth.
+          <strong>Multi-model tip:</strong> <code>CLAUDE.md</code> and <code>GEMINI.md</code> are model-specific entry points — but they both route to the same <code>.memory/</code> folder. This means you can switch between Claude Opus for reasoning and Gemini Flash for execution, and both will always share the same Source of Truth.
         </div>
 
         <h3>Initialize the <code>.memory/</code> Directory</h3>
@@ -1082,8 +1286,7 @@ Task:
      - Rule 4: Before reading .memory/, check CLAUDE.md first to load only the relevant file for the current task — not the full directory.
      - Rule 5: Log every significant bug and its fix to .memory/errors.md to prevent repeating the same debugging paths in future sessions.
      - Rule 6: Log every key decision AND every rejected approach to .memory/decisions.md with a reason and condition to revisit.
-     - Rule 7: If a task requires deep architectural reasoning, complex refactoring, system-wide decisions, or debugging with no obvious root cause — stop and output: "⚠️ This task needs deeper reasoning. Consider switching to a more capable model (Opus / Gemini Pro) for this prompt, then return to Flash once the decision is made and logged to decisions.md." Do not guess or proceed with low confidence. Flag and wait.
-     - Rule 8: Trigger Rule 7 specifically when: (a) unsure which of two architectural approaches is correct, (b) a bug has no obvious root cause after one attempt, (c) a new feature would affect more than 3 existing files, or (d) about to make a decision not covered in decisions.md.
+     - Rule 7: Before starting any task, output one line: "Confidence: [High / Medium / Low] — [one sentence reason]". If Medium or Low, add: "⚠️ Consider switching to a stronger model (Opus / Gemini Pro) before proceeding." Then wait for confirmation before continuing. Do not proceed with Low confidence without explicit approval.
 
   <span class="num">6.</span> <span class="hl3">Create Task Tracker</span> — Create .memory/todo.md with this structure:
 
@@ -1116,16 +1319,12 @@ Task:
       <hr class="divider">
 
       <!-- Memory File Structure -->
-      <div class="section" id="FileStructure">
+      <div class="section" id="phase3">
         <div class="section-header">
           <span class="badge badge-phase">Reference</span>
           <h2>Memory File Structure</h2>
         </div>
-        <p>Each file in <code>.memory/</code> has a single responsibility. <code>CLAUDE.md</code> and
-          <code>GEMINI.md</code> at the root act as lightweight indexes — the AI checks whichever matches its platform
-          first, then loads only the 1–2 files relevant to the current task. Both files point to the same
-          <code>.memory/</code> folder, so Claude and Gemini always share the same Source of Truth.
-        </p>
+        <p>Each file in <code>.memory/</code> has a single responsibility. <code>CLAUDE.md</code> and <code>GEMINI.md</code> at the root act as lightweight indexes — the AI checks whichever matches its platform first, then loads only the 1–2 files relevant to the current task. Both files point to the same <code>.memory/</code> folder, so Claude and Gemini always share the same Source of Truth.</p>
 
         <div class="rules-grid">
           <div class="rule-row">
@@ -1407,6 +1606,36 @@ Then confirm: "Memory updated. Ready to resume."</pre>
   </div>
 
   <script>
+    // Mobile sidebar toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('active');
+      menuBtn.textContent = '✕';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+      menuBtn.textContent = '☰';
+    }
+
+    menuBtn.addEventListener('click', () => {
+      sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // Close sidebar when a nav link is clicked on mobile
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) closeSidebar();
+      });
+    });
+
     // Copy button logic
     function copyCode(btn) {
       const pre = btn.closest('.code-block').querySelector('pre');
